@@ -50,4 +50,8 @@ select {
   height: 30px;
   border-radius: 5px;
 }
+
+.join-btn:hover, .join-btn:focus {
+  color: white;
+}
 /*# sourceMappingURL=Join.css.map */

@@ -14,7 +14,7 @@ const router = require("./router");
 app.use(router);
 app.use(cors);
 
-const { addUser } = require("./users.js");
+const { addUser, removeUser, findUser, getUsersInRoom } = require("./users.js");
 
 // triggers on connection
 io.on("connect", (socket) => {
@@ -29,10 +29,34 @@ io.on("connect", (socket) => {
       user: "Admin",
       text: `${user.name}, welcome to the room!`,
     });
+    socket.broadcast
+      .to(user.room)
+      .emit("message", { user: "Admin", text: `${user.name} has joined!` });
+
+    callback();
+  });
+
+  socket.on("sendMessage", (message, callback) => {
+    const user = findUser(socket.id);
+
+    io.to(user.room).emit("message", { user: user.name, text: message });
+
+    callback();
   });
 
   socket.on("disconnect", () => {
-    io.emit("message", "user left Chatt");
+    const user = removeUser(socket.id);
+
+    if (user) {
+      io.to(user.room).emit("message", {
+        user: "Admin",
+        text: `${user.name} has left.`,
+      });
+      io.to(user.room).emit("roomData", {
+        room: user.room,
+        users: getUsersInRoom(user.room),
+      });
+    }
   });
 });
 
