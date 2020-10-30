@@ -6,9 +6,9 @@
   border-radius: 15px;
 }
 
-header {
-  height: 42.5px;
-  padding-top: 5px;
+.join-header {
+  height: 50px;
+  padding-top: 7px;
   font-size: 2rem;
   text-align: center;
   background: #242e4c;
@@ -16,7 +16,7 @@ header {
   border-top-right-radius: 15px;
 }
 
-main {
+.join-main {
   padding: 30px 40px;
 }
 
@@ -29,7 +29,7 @@ label {
   margin-top: 0;
 }
 
-input {
+.join-input {
   font-size: 16px;
   padding: 5px;
   height: 40px;
@@ -43,7 +43,7 @@ select {
   width: 100%;
 }
 
-button {
+.join-btn {
   cursor: pointer;
   margin-top: 1.5rem;
   width: 100%;

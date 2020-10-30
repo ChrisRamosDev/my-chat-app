@@ -9,42 +9,44 @@ const Join = () => {
 
   return (
     <div className='join-container'>
-      <header>
+      <header className='join-header'>
         <h1>Chatt</h1>
       </header>
-      <main>
+      <main className='join-main'>
         <form action='#'>
           <div>
-            <label for='name' className='username'>
+            <label htmlFor='name' className='username'>
               Username
             </label>
             <input
               type='text'
               placeholder='Enter your username'
               onChange={(event) => setName(event.target.value)}
-              required
+              className='join-input'
             />
           </div>
           <div>
-            <label for='room'>Select Room</label>
+            <label htmlFor='room'>Select Room</label>
             <select
               name='room'
               id='room'
               onChange={(event) => setRoom(event.target.value)}
-              required
             >
               <option value=''>-- Rooms --</option>
-              <option value='room #1'>Pups</option>
-              <option value='room #1'>Kits</option>
-              <option value='room #1'>Birds</option>
+              <option value='pups'>Pups</option>
+              <option value='kits'>Kits</option>
+              <option value='birds'>Birds</option>
             </select>
             <Link
+              // passes username and room to Chat component
               onClick={(event) =>
                 !name || !room ? event.preventDefault() : null
               }
-              to='/chat'
+              to={`/chat?name=${name}&room=${room}`}
             >
-              <button type='submit'>Submit</button>
+              <button type='submit' className='join-btn'>
+                Sign In
+              </button>
             </Link>
           </div>
         </form>
