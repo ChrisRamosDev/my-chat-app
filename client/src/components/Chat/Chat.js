@@ -15,7 +15,7 @@ let socket;
 const Chat = ({ location }) => {
   const [name, setName] = useState("");
   const [room, setRoom] = useState("");
-  const [users, setUsers] = useState("");
+  const [users, setUsers] = useState([]);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
@@ -29,9 +29,18 @@ const Chat = ({ location }) => {
 
     socket = io(ENDPOINT);
 
+    // join chat
     socket.emit("join", { name, room }, () => {});
 
-    console.log(name, room);
+    // get room and users
+    socket.on("usersInRoom", ({ room, users }) => {
+      const usersInRoom = [];
+      users.forEach((user) => {
+        usersInRoom.push(user);
+      });
+      setUsers(usersInRoom);
+    });
+
     return () => {
       socket.emit("disconnect");
 
@@ -48,15 +57,9 @@ const Chat = ({ location }) => {
       },
       [messages]
     );
-    socket.on(
-      "roomData",
-      ({ users }) => {
-        setUsers(users);
-      },
-      [messages]
-    );
   });
   // message sending function
+
   const sendMessage = (event) => {
     event.preventDefault();
 
@@ -79,10 +82,9 @@ const Chat = ({ location }) => {
           <h2>{room}</h2>
           <h3>Users:</h3>
           <ul id='users'>
-            <li>Chris</li>
-            <li>Christa</li>
-            <li>{users}</li>
-            <li>{name}</li>
+            {users.map((user, index) => (
+              <li key={index}>{user.name}</li>
+            ))}
           </ul>
         </div>
         <ScrollToBottom className='messages'>

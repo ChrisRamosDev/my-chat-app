@@ -105,4 +105,31 @@
   color: white;
   border: 2px solid white;
 }
+
+.msg-outer-wrapper {
+  display: block;
+  position: relative;
+  background: #ddd;
+  width: calc(100% - 2em);
+  padding: 0.5em 1em 1em;
+  border-radius: 10px;
+  margin: 0.5em 1em;
+}
+
+.msg-outer-wrapper .msg-user {
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  padding-left: 0.5em;
+}
+
+.msg-outer-wrapper .message {
+  margin-bottom: 1em;
+}
+
+.msg-outer-wrapper .time {
+  position: absolute;
+  bottom: 8px;
+  right: 10px;
+  font-size: 0.8rem;
+}
 /*# sourceMappingURL=Chat.css.map */

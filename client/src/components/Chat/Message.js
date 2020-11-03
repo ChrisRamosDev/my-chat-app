@@ -1,4 +1,5 @@
 import React from "react";
+import * as dayjs from "dayjs";
 
 const Message = ({ message: { user, text }, name }) => {
   let fromCurrentUser = false;
@@ -10,18 +11,20 @@ const Message = ({ message: { user, text }, name }) => {
   }
 
   return fromCurrentUser ? (
-    <div>
-      <p>{trimmed}</p>
-      <div>
-        <p>{text}</p>
+    <div className='msg-outer-wrapper sent'>
+      <p className='msg-user'>{trimmed}</p>
+      <div className='msg-inner-wrapper'>
+        <p className='message'>{text}</p>
       </div>
+      <small className='time'>{dayjs().format("h:mma")}</small>
     </div>
   ) : (
-    <div>
-      <div>
-        <p>{text}</p>
+    <div className='msg-outer-wrapper received'>
+      <div className='msg-inner-wrapper'>
+        <p className='message'>{text}</p>
       </div>
-      <p>{user}</p>
+      <p className='msg-user'>{user}</p>
+      <small className='time'>{dayjs().format("h:mma")}</small>
     </div>
   );
 };
