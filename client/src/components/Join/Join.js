@@ -33,9 +33,9 @@ const Join = () => {
               onChange={(event) => setRoom(event.target.value)}
             >
               <option value=''>-- Rooms --</option>
-              <option value='pups'>Pups</option>
-              <option value='kits'>Kits</option>
-              <option value='birds'>Birds</option>
+              <option value='room1'>Room 1</option>
+              <option value='room2'>Room 2</option>
+              <option value='room3'>Room 3</option>
             </select>
             <Link
               // passes username and room to Chat component

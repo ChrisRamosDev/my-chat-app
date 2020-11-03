@@ -79,7 +79,7 @@ const Chat = ({ location }) => {
       <main className='chat-main'>
         <div className='chat-sidebar'>
           <h3>Room Name: </h3>
-          <h2>{room}</h2>
+          <h2 className='chat-room-display'>{room}</h2>
           <h3>Users:</h3>
           <ul id='users'>
             {users.map((user, index) => (
